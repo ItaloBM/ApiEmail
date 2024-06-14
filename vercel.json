@@ -1,16 +1,17 @@
 {
-  "version": 2,
-  "functions": {
-    "api/email": {
-      "runtime": "vercel/node@20.0.0",
-      "includeFiles": "api/src/**"  
-    }
-  },
-  "routes": [
-    { "handle": "filesystem" },
-    {
-      "src": "/send-email",
-      "dest": "api/email"
-    }
-  ]
-}
+    "version": 2,
+    "functions": {
+      "api/email": {
+        "runtime": "vercel/node@20.0.0",
+        "includeFiles": "server.js"
+      }
+    },
+    "routes": [
+      { "handle": "filesystem" },
+      {
+        "src": "/send-email",
+        "dest": "api/email"
+      }
+    ]
+  }
+  
