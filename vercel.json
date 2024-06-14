@@ -2,7 +2,8 @@
   "version": 2,
   "functions": {
     "api/email": {
-      "runtime": "vercel/node@20.0.0"
+      "runtime": "vercel/node@20.0.0",
+      "includeFiles": "api/src/**"  
     }
   },
   "routes": [
