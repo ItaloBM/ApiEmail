@@ -3,7 +3,7 @@ import nodemailer from 'nodemailer';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 import multer from 'multer';
-import { dirname, join } from 'path';
+import { dirname } from 'path';
 import { fileURLToPath } from 'url';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
