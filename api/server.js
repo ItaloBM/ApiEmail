@@ -22,6 +22,9 @@ app.post('/send-email', upload.array('fotos'), async (req, res) => {
   const { endereco, pontoReferencia, descricao, latitude, longitude, nome, email } = req.body;
   const fotos = req.files;
 
+  console.log('Requisição recebida:', req.body);
+  console.log('Arquivos recebidos:', req.files);
+
   const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
@@ -1005,6 +1008,7 @@ app.post('/send-email', upload.array('fotos'), async (req, res) => {
 
   try {
     await transporter.sendMail(mailOptions);
+    console.log('Email enviado com sucesso!');
     res.status(200).send('Email enviado com sucesso!');
   } catch (error) {
     console.error('Erro ao enviar email:', error);
