@@ -8,7 +8,7 @@ import { fileURLToPath } from 'url';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const app = express();
-const port = process.env.PORT || 3001; // Use a porta do ambiente ou 3001 para desenvolvimento local
+const port = process.env.PORT || 3001;
 
 app.use(cors());
 app.use(bodyParser.json());
