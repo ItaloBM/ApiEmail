@@ -1002,7 +1002,6 @@ app.post('/send-email', upload.array('fotos'), async (req, res) => {
     attachments: fotos.map((foto) => ({
       filename: foto.originalname,
       content: foto.buffer,
-      cid: foto.filename,
     })),
   };
 
