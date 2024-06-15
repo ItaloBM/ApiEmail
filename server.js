@@ -19,7 +19,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });
 
-app.post('/send-email', upload.array('fotos'), async (req, res) => {
+app.get('/send', upload.array('fotos'), async (req, res) => {
   const { nome, email, endereco, pontoReferencia, descricao, latitude, longitude } = req.body;
   const fotos = req.files;
 
@@ -37,7 +37,8 @@ app.post('/send-email', upload.array('fotos'), async (req, res) => {
     from: process.env.EMAIL_USER,
     to: email,
     subject: 'Relato de Problema',
-    html: `<!DOCTYPE html>
+    html: `
+      <!DOCTYPE html>
 
 <html lang="en"xmlns:o="urn:schemas-microsoft-com:office:office"xmlns:v="urn:schemas-microsoft-com:vml">
   <head>
@@ -1004,16 +1005,16 @@ app.post('/send-email', upload.array('fotos'), async (req, res) => {
     }))
   };
 
-  try {
-    await transporter.sendMail(mailOptions);
-    console.log('Email enviado com sucesso!');
-    res.status(200).send('Email enviado com sucesso!');
-  } catch (error) {
-    console.error('Erro ao enviar email:', error);
-    res.status(500).send('Erro ao enviar email');
-  }
+  transporter.sendMail(mailOptions)
+    .then(info => {
+      res.send(info);
+    })
+    .catch(error => {
+      res.send(error);
+    });
 });
 
 app.listen(port, () => {
-  console.log(`Servidor rodando na porta ${port}`);
+  console.log(`Servidor Rodando http://localhost:${port}`);
 });
+
